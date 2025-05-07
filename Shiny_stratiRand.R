@@ -1,7 +1,7 @@
-
 library(shiny)
 library(OSAT)
 library(ggplot2)
+
 
 ui <- fluidPage(
   titlePanel("Stratified randomization"),
@@ -154,8 +154,8 @@ server <- function(session, input, output) {
     })
   
   straRandOut <- reactive({
-    
     out <- get.experiment.setup(straRandResults())
+    
     out$order <- paste(formatC(out$plate, width=3, flag="0"), "_", out$chips, "_", formatC(out$wells, width=2, flag="0"), sep = "")
     out <- out[order(out$order),]
     rownames(out) <- 1:nrow(out)
